@@ -1,0 +1,57 @@
+This implementation creates a custom file transfer protocol between the `xFxServer` and `xFxClient` over TCP using Java. The protocol consists of various commands that facilitate operations such as file download, upload, file listing, and resumption of interrupted transfers. Here is a detailed description of the protocol aligned with the commands:
+
+### Protocol Overview
+The client and server communicate via a custom protocol over a fixed port (`3221` in this case). The client initiates communication by sending a command, followed by any necessary arguments (such as filenames or file sizes). The server processes the command and responds accordingly. The interaction consists of both control information (via headers) and data (such as file contents).
+
+### Supported Commands and Their Protocol:
+
+1. **Download (`download{space}<filename>{space}{space}`)**
+   - **Client:** Sends a request to the server to download a file:  
+     `download <filename>\n`
+   - **Server:**
+     - If the file is found, the server responds with the header:  
+       `OK <filesize>\n`
+     - The server then sends the binary data for the file.
+     - If the file is not found, the server responds with:  
+       `NOT FOUND\n`
+   - **Client:** Receives the file and stores it in the client's directory if the server responds with the `OK` header.
+
+2. **Check (`check{space}<filename>{space}<client_file_size>{lineSeed}`)**
+   - **Client:** Sends a request to the server to check if the file on the server has been modified since the client last downloaded it:  
+     `check <filename> <client_file_size>\n`
+   - **Server:**
+     - If the file on the client is up to date, the server responds with:  
+       `OK <filesize>\n`
+     - If the file on the server has been modified, the server responds with:  
+       `DIRTY <filesize>\n`  
+       and sends the updated file data.
+   - **Client:** Updates the file if the server returns a `DIRTY` status.
+
+3. **Upload (`upload{space}<filename>{space}<filesize>{lineSeed}`)**
+   - **Client:** Sends a request to upload a file to the server:  
+     `upload{space}<filename>{space}<filesize>{lineSeed}`
+   - **Server:** Receives the file and either stores it or responds with a failure message:
+     - If the upload is successful, the server responds with:  
+       `Stored\n`
+     - If the upload fails, the server responds with:  
+       `Failed\n`
+
+4. **List (`list`)**
+   - **Client:** Sends a request to list all files available on the server:  
+     `list\n`
+   - **Server:**
+     - If files are available, the server responds with a list of filenames and their sizes:  
+       `OK <list_length>\n<file_list>`
+     - If there are no files, the server responds with:  
+       `ERROR\n`
+
+5. **Resume (`resume <filename> <client_file_size>`)**
+   - **Client:** Sends a request to resume downloading a file from the point where the transfer was interrupted:  
+     `resume <filename> <client_file_size>\n`
+   - **Server:**
+     - If bytes are left to download, the server responds with:  
+       `OK{space}<remaining_bytes>{space}\n`  
+       followed by the remaining file data.
+     - If the file has already been fully downloaded, the server responds with:  
+       `COMPLETED\n`
+

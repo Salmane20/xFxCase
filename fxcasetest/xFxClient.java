@@ -134,23 +134,29 @@ public class xFxClient {
 
 			}else if(command.equals("l")){
 
-					String header = "list\n";
-					headerwriter.write(header , 0 , header.length());
-					headerwriter.flush();
+				/*String header = "list\n";
+				headerwriter.write(header , 0 , header.length());
+				headerwriter.flush();
 
-					String resheader = headerreader.readLine();
-					if( resheader.startsWith("OK")){
-						int Listlength = Integer.parseInt(resheader.split(" ")[1]);
-						char[] Files = new char[Listlength];
-						headerreader.read(Files, 0,Listlength);
-						System.out.println("Available Files : ");
-						System.out.println(new String(Files));
-						
-					}else {
-						System.out.println("Doesn't work");
+				String resheader = headerreader.readLine();
+				if( resheader.startsWith("OK")){
+					int Listlength = Integer.parseInt(resheader.split(" ")[1]);
+					char[] elements = new char[Listlength];
+					headerreader.read(elements, 0, Listlength);
+					int i=0;
+
+					for(char element : elements){
+						arr[i]= Long.parseLong(str.nextToken());
+						i++;
 					}
+					
+					System.out.println("Available Files : ");
+					System.out.println(new String(Files));
+					
+				}else {
+					System.out.println("Doesn't work");
+				}*/
 
-				
 			}else if(command.equals("r")){
 				
 					FileInputStream Filein = new FileInputStream("ClientShare/" + fileName);
@@ -171,7 +177,8 @@ public class xFxClient {
 					if( status.equals("OK")){
 
 						byte[] bytes = new byte[bytesleft];
-						datain.readFully(bytes);
+						datain.skip(filesize);
+						datain.read(bytes);
 
 						try(FileOutputStream Fileout = new FileOutputStream("Clientshare/" + fileName)){
 							Fileout.write(bytes, 0 , neededbytes.length());

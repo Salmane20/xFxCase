@@ -149,10 +149,6 @@ public class xFxServer {
 							int ServerSize = Filein.available();
 
 							int bytesleft = ServerSize - sizereceived;
-
-							System.out.println("Client file size : " + sizereceived);
-							System.out.println("Server file size : " + ServerSize);
-							System.out.println("Needed Bytes file size : " + bytesleft);
 	
 							if(bytesleft == 0){
 								header = "COMPLETED\n";
@@ -166,7 +162,7 @@ public class xFxServer {
 								headerwriter.flush();
 		
 								byte[] bytes = new byte[bytesleft];
-								
+								Filein.skip(sizereceived);
 								Filein.read(bytes);
 		
 								Filein.close();

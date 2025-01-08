@@ -1,18 +1,42 @@
-# xFxCase
-Here is a sample code in Java of the xFx Application
+# xFx Application
 
-You are going to find 2 Folders :
+The xFx Application is a Java-based client-server application designed for efficient file sharing. It contains two main folders:
 
-ClientShare and ServerShare each one of them contain files that you can Manipulate
+- **ClientShare**
+- **ServerShare**
 
-to Download a file after Compiling use "java xfxServer d {FileName}";
+Each folder includes files that can be manipulated as per the application's functionality.
 
-" PS : The file is automatically Checked if it is Okay or Dirty in the server side and return the corresponding Header Protocole"
+## Features
 
-to Upload a file after Compiling use "java xfxServer u {FileName}";
+### 1. Downloading a File
+To download a file from the server, use the following command after compiling:
+```
+java xfxServer d {FileName}
+```
+**Note**: The server automatically checks if the file is "Okay" or "Dirty" and returns the corresponding header protocol.
 
-to List the files in the ServerShare Folder after Compiling use "java xfxServer l";
+### 2. Uploading a File
+To upload a file to the server, use the following command after compiling:
+```
+java xfxServer u {FileName}
+```
 
-to resume the downloading of a file after Compiling use "java xfxServer r {FileName}";
+### 3. Listing Files on the Server
+To list all files available in the `ServerShare` folder, use the following command after compiling:
+```
+java xfxServer l
+```
 
+### 4. Resuming a Download
+To resume downloading a file, use the following command after compiling:
+```
+java xfxServer r {FileName}
+```
+
+## Additional Information
+- Ensure all files are properly placed within their respective folders (`ClientShare` and `ServerShare`).
+- The application uses a robust file integrity check to ensure data consistency during downloads.
+
+**PS**: This file sharing application simplifies remote file management with a clean and efficient command-line interface.
 

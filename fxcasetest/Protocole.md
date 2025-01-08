@@ -114,5 +114,3 @@ java xFxClient c <filename>
 - Enhance error handling for better diagnostics.
 - Support for more complex authentication or encryption can be added for secure file transfers.
 
-## License
-This project is licensed under the MIT License.

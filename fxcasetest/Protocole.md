@@ -1,6 +1,6 @@
 # xFx File Transfer Protocol
 
-This project implements a custom file transfer protocol between a client (`xFxClient`) and a server (`xFxServer`) over TCP. The protocol supports operations such as file download, upload, file listing, and resumption of interrupted transfers. This guide provides details about the protocol, setup, and usage.
+This project implements a custom file transfer protocol between a client (`xFxClient`) and a server (`xFxServer`). The protocol supports operations such as file download, upload, file listing, and resumption of interrupted transfers. This guide provides details about the protocol, setup, and usage.
 
 ## Protocol Overview
 The client and server communicate using a custom protocol over a fixed port (`3221`). The client sends commands with necessary arguments (like filenames or file sizes), and the server processes these commands and responds accordingly. The protocol consists of headers for control information and raw data for file contents.

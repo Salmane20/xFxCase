@@ -134,28 +134,22 @@ public class xFxClient {
 
 			}else if(command.equals("l")){
 
-				/*String header = "list\n";
+				String header = "list\n";
 				headerwriter.write(header , 0 , header.length());
 				headerwriter.flush();
 
 				String resheader = headerreader.readLine();
 				if( resheader.startsWith("OK")){
-					int Listlength = Integer.parseInt(resheader.split(" ")[1]);
-					char[] elements = new char[Listlength];
-					headerreader.read(elements, 0, Listlength);
-					int i=0;
+					int listLength = Integer.parseInt(resheader.split(" ")[1]);
+                    char[] elements = new char[listLength];
+                    headerreader.read(elements, 0, listLength);
 
-					for(char element : elements){
-						arr[i]= Long.parseLong(str.nextToken());
-						i++;
-					}
-					
-					System.out.println("Available Files : ");
-					System.out.println(new String(Files));
+                    System.out.println("Available Files: ");
+                    System.out.println(new String(elements));
 					
 				}else {
 					System.out.println("Doesn't work");
-				}*/
+				}
 
 			}else if(command.equals("r")){
 				

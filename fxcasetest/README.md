@@ -37,7 +37,12 @@ The client and server communicate using a custom protocol over a fixed port (`32
 - **Client Behavior:**
   - Requests a list of files available on the server.
 - **Server Response:**
-  - If files are available: `OK <list_length>\n` followed by filenames and sizes.
+  -  If files are available: `OK <list_length>\n` followed by a list in the format:
+    ```
+    file1 <size>\n
+    file2 <size>\n
+    ...
+    ```
   - If no files: `ERROR\n`.
 
 ### 5. Resume

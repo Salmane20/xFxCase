@@ -1,6 +1,6 @@
 # xFx Application
 
-The xFx Application is a Java-based client-server application designed for efficient file sharing. It contains two main folders:
+The xFx Application is a Java-based client-server application designed for efficient file sharing Upload/Download, using Socket API. It contains two main folders:
 
 - **ClientShare**
 - **ServerShare**
